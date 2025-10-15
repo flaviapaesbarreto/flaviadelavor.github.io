@@ -4,142 +4,432 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flavia de Lavor — Tradução Literária</title>
-
+  
   <!-- Fontes Google -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Raleway:wght@500&family=Source+Sans+Pro&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --preto: #000000;
-      --cinza-escuro: #333333;
-      --cinza-medio: #777777;
-      --branco: #FFFFFF;
+      --cor-primaria: #1a1a1a;
+      --cor-secundaria: #2d2d2d;
+      --cor-destaque: #d4af37;
+      --cor-texto: #333333;
+      --cor-texto-claro: #666666;
+      --cor-fundo: #ffffff;
+      --cor-fundo-alt: #f8f8f8;
+      --transicao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Source Sans Pro', sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: 'Inter', sans-serif;
       line-height: 1.7;
-      background: var(--branco);
-      color: var(--cinza-escuro);
+      color: var(--cor-texto);
+      background: var(--cor-fundo);
+      overflow-x: hidden;
     }
 
-    /* Cabeçalho */
-    header {
-      background: var(--preto);
-      color: var(--branco);
-      padding: 2.5rem 1rem;
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+      color: white;
       text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-      font-family: 'Montserrat', sans-serif;
-      letter-spacing: 1px;
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+      opacity: 0.5;
     }
-    header p {
-      margin-top: .5rem;
-      font-family: 'Raleway', sans-serif;
-      font-size: 1.2rem;
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero .tagline {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
       font-style: italic;
-      color: var(--cinza-medio);
+      color: var(--cor-destaque);
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--cor-destaque);
+      color: var(--cor-primaria);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: var(--transicao);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
     }
 
     /* Navegação */
     nav {
-      position: sticky;
+      position: fixed;
       top: 0;
-      background: var(--preto);
-      padding: 0.7rem;
+      left: 0;
+      right: 0;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
       z-index: 1000;
+      transform: translateY(-100%);
+      transition: var(--transicao);
     }
+
+    nav.visible {
+      transform: translateY(0);
+    }
+
     nav ul {
       list-style: none;
       display: flex;
       justify-content: center;
-      margin: 0;
-      padding: 0;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
-    nav li {
-      margin: 0 1rem;
-    }
+
     nav a {
-      color: var(--branco);
+      color: white;
       text-decoration: none;
-      font-weight: bold;
-      font-family: 'Raleway', sans-serif;
-      transition: color 0.3s;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transicao);
+      position: relative;
     }
-    nav a:hover {
-      color: var(--cinza-medio);
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--cor-destaque);
+      transition: var(--transicao);
+    }
+
+    nav a:hover::after {
+      width: 100%;
     }
 
     /* Seções */
     section {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-    }
-    h2 {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--preto);
-      border-bottom: 2px solid #eee;
-      padding-bottom: .3rem;
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    /* Citação */
+    section:nth-child(even) {
+      background: var(--cor-fundo-alt);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      color: var(--cor-primaria);
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--cor-destaque);
+    }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 3rem 0 1.5rem;
+      color: var(--cor-primaria);
+    }
+
+    /* Citações */
     blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
       font-style: italic;
-      color: var(--cinza-medio);
-      border-left: 4px solid var(--cinza-medio);
-      padding-left: 1rem;
-      margin: 1.5rem 0;
+      color: var(--cor-texto-claro);
+      border-left: 4px solid var(--cor-destaque);
+      padding-left: 2rem;
+      margin: 2rem 0;
+      line-height: 1.8;
+    }
+
+    /* Galeria de Livros */
+    .book-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .book-item {
+      position: relative;
+      cursor: pointer;
+      transition: var(--transicao);
+    }
+
+    .book-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .book-cover {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: var(--transicao);
+    }
+
+    .book-item:hover .book-cover {
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .book-cover img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: var(--transicao);
+    }
+
+    .book-item:hover .book-cover img {
+      transform: scale(1.05);
+    }
+
+    .book-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+      opacity: 0;
+      transition: var(--transicao);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+
+    .book-item:hover .book-overlay {
+      opacity: 1;
+    }
+
+    .book-info {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .book-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--cor-texto);
+      margin-bottom: 0.3rem;
+      line-height: 1.4;
+    }
+
+    .book-author {
+      font-size: 0.85rem;
+      color: var(--cor-texto-claro);
+      font-style: italic;
     }
 
     /* Listas */
-    ul {
-      padding-left: 1.2rem;
-    }
-    ul li {
-      margin-bottom: .5rem;
-    }
-
-    /* Contato */
-    section#contato ul {
+    .styled-list {
       list-style: none;
       padding: 0;
     }
-    section#contato li {
-      margin-bottom: .5rem;
-    }
-    section#contato a {
-      color: var(--preto);
-      font-weight: bold;
-      text-decoration: none;
-    }
-    section#contato a:hover {
-      color: var(--cinza-medio);
+
+    .styled-list li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      transition: var(--transicao);
     }
 
-    /* Rodapé */
+    .styled-list li:hover {
+      padding-left: 1rem;
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    /* Editoras */
+    .editoras {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+      justify-content: center;
+    }
+
+    .editora-tag {
+      padding: 0.5rem 1.2rem;
+      background: var(--cor-fundo-alt);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transicao);
+    }
+
+    .editora-tag:hover {
+      background: var(--cor-destaque);
+      color: white;
+      border-color: var(--cor-destaque);
+      transform: translateY(-2px);
+    }
+
+    /* Contato */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .contact-item a {
+      color: var(--cor-primaria);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transicao);
+      border-bottom: 2px solid transparent;
+    }
+
+    .contact-item a:hover {
+      color: var(--cor-destaque);
+      border-bottom-color: var(--cor-destaque);
+    }
+
+    /* Footer */
     footer {
+      background: var(--cor-primaria);
+      color: white;
       text-align: center;
-      font-size: .9rem;
-      color: var(--cinza-medio);
-      padding: 2rem 1rem;
-      border-top: 1px solid #ddd;
-      font-family: 'Raleway', sans-serif;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Animações */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      .book-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .book-cover img {
+        height: 220px;
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+
+      .editoras {
+        gap: 0.8rem;
+      }
+
+      .editora-tag {
+        font-size: 0.85rem;
+        padding: 0.4rem 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Flavia de Lavor</h1>
-    <p>Tradução Literária e Preparação de Texto</p>
-  </header>
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Flavia de Lavor</h1>
+      <p class="subtitle">Tradução Literária e Preparação de Texto</p>
+      <p class="tagline">"A tradução é uma escuta atenta — uma tentativa de fazer ecoar, em outra língua, a mesma respiração."</p>
+      <a href="#quem-traduz" class="cta-button">Conheça meu trabalho</a>
+    </div>
+  </div>
 
-  <nav>
+  <!-- Navegação -->
+  <nav id="navbar">
     <ul>
       <li><a href="#quem-traduz">Quem traduz</a></li>
       <li><a href="#traducao">Tradução Literária</a></li>
@@ -148,78 +438,369 @@
     </ul>
   </nav>
 
-  <section>
+  <!-- Quem traduz -->
+  <section id="quem-traduz" class="fade-in">
+    <h2>Quem traduz</h2>
+    <p style="margin-top: 2rem; font-size: 1.1rem; line-height: 1.8;">
+      Traduzo histórias há mais de uma década — não apenas entre idiomas, mas entre vozes, atmosferas e sensibilidades.
+    </p>
+    <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
+      Meu trabalho é encontrar, no português, o ritmo certo de cada autor, o tom exato que faz uma história soar como se sempre tivesse pertencido a esta língua.
+    </p>
+    <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
+      Colaboro com editoras como <strong>Record</strong>, <strong>Morro Branco</strong>, <strong>Trama</strong>, <strong>Aleph</strong>, <strong>Globo Alt</strong> e <strong>Sextante</strong>, traduzindo obras de ficção que percorrem diferentes mundos e estilos.
+    </p>
+    <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
+      Também atuo na preparação de texto e revisão, em parceria com casas como <strong>HarperCollins Brasil</strong>, <strong>Antofágica</strong>, <strong>Rocco</strong> e <strong>Objetiva</strong>.
+    </p>
+    <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
+      Acredito que traduzir — e editar — é um exercício de escuta. Cada texto tem uma respiração própria, e o meu papel é garantir que ela continue viva depois da travessia.
+    </p>
+    <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
+      Meu compromisso é com a clareza, o estilo e a integridade das histórias — para que encontrem seus leitores da forma mais fluida, fiel e luminosa possível.
+    </p>
+  </section>
+
+  <!-- Tradução Literária -->
+  <section id="traducao" class="fade-in">
+    <h2>Tradução Literária</h2>
     <blockquote>
-      “A tradução é uma escuta atenta — uma tentativa de fazer ecoar, em outra língua, a mesma respiração.”
+      "Entre uma língua e outra, o que procuro é o silêncio onde as palavras respiram."
     </blockquote>
-  </section>
+    <p style="margin-top: 2rem; font-size: 1.1rem; line-height: 1.8;">
+      Tradução é o coração do meu trabalho. Já dei voz em português a narrativas de diferentes estilos — da fantasia e da ficção científica à prosa literária contemporânea.
+    </p>
 
-  <section id="quem-traduz">
-    <h2>✒️ Quem traduz</h2>
-    <p>Traduzo histórias há mais de uma década — não apenas entre idiomas, mas entre vozes, atmosferas e sensibilidades. Meu trabalho é encontrar, no português, o ritmo certo de cada autor, o tom exato que faz uma história soar como se sempre tivesse pertencido a esta língua.</p>
-    <p>Colaboro com editoras como Record, Morro Branco, Trama, Aleph, Globo Alt e Sextante, traduzindo obras de ficção que percorrem diferentes mundos e estilos.</p>
-    <p>Também atuo na preparação de texto, acompanhando o original desde os primeiros ajustes até o formato final. Acredito que traduzir — e editar — é um exercício de escuta. Cada texto tem uma respiração própria, e o meu papel é garantir que ela continue viva depois da travessia.</p>
-    <p>Meu compromisso é com a clareza, o estilo e a integridade das histórias — para que encontrem seus leitores da forma mais fluida, fiel e luminosa possível.</p>
-  </section>
+    <h3>Editoras com que colaboro:</h3>
+    <div class="editoras">
+      <span class="editora-tag">Record</span>
+      <span class="editora-tag">Morro Branco</span>
+      <span class="editora-tag">Trama</span>
+      <span class="editora-tag">Aleph</span>
+      <span class="editora-tag">Globo Alt</span>
+      <span class="editora-tag">Sextante</span>
+    </div>
 
-  <section id="traducao">
-    <h2>📚 Tradução Literária</h2>
-    <blockquote>“Entre uma língua e outra, o que procuro é o silêncio onde as palavras respiram.”</blockquote>
-    <p>Tradução é o coração do meu trabalho. Já dei voz em português a narrativas de diferentes estilos — da fantasia e da ficção científica à prosa literária contemporânea.</p>
-    <p><strong>Editoras com que colaboro:</strong> Record | Morro Branco | Trama | Aleph | Globo Alt | Sextante</p>
-    <h3>Obras traduzidas</h3>
-    <ul>
-      <li>A Vida Invisível de Addie LaRue — V. E. Schwab (Galera Record)</li>
-      <li>Os Frágeis Fios do Poder — V. E. Schwab (Galera Record)</li>
-      <li>Vilão e Vingança — V. E. Schwab (Galera Record)</li>
-      <li>A Profetisa do Fim — Bea Fitzgerald (Galera Record)</li>
-      <li>Séries De Sangue e Cinzas e Carne e Fogo — Jennifer L. Armentrout (Galera Record)</li>
-      <li>Vardø: A Ilha das Mulheres — Kiran Millwood Hargrave (Record)</li>
-      <li>Em Fogo Lento — Paula Hawkins (Record)</li>
-      <li>As Aventuras de Amina al-Sirafi — S. A. Chakraborty (Morro Branco)</li>
-      <li>O Capítulo Secreto — Genevieve Cogman (Morro Branco)</li>
-      <li>Julia e o Tubarão — Kiran Millwood Hargrave (Morro Branco)</li>
-      <li>Como Capturar um Tigre — Tae Keller (Morro Branco)</li>
-      <li>A Caçadora de Arz — Hafsah Faizal (Morro Branco)</li>
-      <li>Kate Daniels: Sangue Mágico e Fogo Mágico — Ilona Andrews (Sextante)</li>
-      <li>Livro de mistério e fantasia — Robert Jackson Bennett (Aleph, em breve)</li>
-      <li>Romance — Sarah Jio (Livros da Alice, em breve)</li>
-      <li>Thriller — R. B. Egan (Trama, em breve)</li>
-      <li>Romance YA — Alex Light (Globo Alt, em breve)</li>
+    <h3>Algumas obras traduzidas</h3>
+    <div class="book-gallery">
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="AddieLaRue.webp" alt="A Vida Invisível de Addie LaRue">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">A Vida Invisível de Addie LaRue</div>
+          <div class="book-author">V. E. Schwab</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="FiosdoPoder.jpg" alt="Os Frágeis Fios do Poder">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Os Frágeis Fios do Poder</div>
+          <div class="book-author">V. E. Schwab</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="Vilão.jpeg" alt="Vilão">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Vilão</div>
+          <div class="book-author">V. E. Schwab</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="Vingança.jpeg" alt="Vingança">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Vingança</div>
+          <div class="book-author">V. E. Schwab</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="ProfetisadoFim.jpeg" alt="A Profetisa do Fim">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">A Profetisa do Fim</div>
+          <div class="book-author">Bea Fitzgerald</div>
+        </div>
+      </div>
+           
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="CarneeSangue.webp" alt="Carne e Sangue">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Série Carne e Sangue</div>
+          <div class="book-author">Jennifer L. Armentrout</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="Vardo.jpeg" alt="Vardø: A Ilha das Mulheres">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Vardø: A Ilha das Mulheres</div>
+          <div class="book-author">Kiran Millwood Hargrave</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="FogoLento.jpg" alt="Em Fogo Lento">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Em Fogo Lento</div>
+          <div class="book-author">Paula Hawkins</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="AsAventurasdeAminaAlSifari.png" alt="As Aventuras de Amina al-Sirafi">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">As Aventuras de Amina al-Sirafi</div>
+          <div class="book-author">S. A. Chakraborty</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="OCapítuloSecreto.png" alt="O Capítulo Secreto">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">O Capítulo Secreto</div>
+          <div class="book-author">Genevieve Cogman</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="JuliaeoTubarão.png" alt="Julia e o Tubarão">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Julia e o Tubarão</div>
+          <div class="book-author">Kiran Millwood Hargrave</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="ComoCapturarumTigre.webp" alt="Como Capturar um Tigre">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Como Capturar um Tigre</div>
+          <div class="book-author">Tae Keller</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="ACaçadoradeArz.webp" alt="A Caçadora de Arz">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">A Caçadora de Arz</div>
+          <div class="book-author">Hafsah Faizal</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="SangueMágico.jpg" alt="Sangue Mágico">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Kate Daniels: Sangue Mágico</div>
+          <div class="book-author">Ilona Andrews</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Em breve</h3>
+    <ul class="styled-list">
+      <li>Livro de mistério e fantasia — <strong>Robert Jackson Bennett</strong> (Aleph)</li>
+      <li>Romance — <strong>Sarah Jio</strong> (Livros da Alice)</li>
+      <li>Thriller — <strong>R. B. Egan</strong> (Trama)</li>
+      <li>Romance YA — <strong>Alex Light</strong> (Globo Alt)</li>
     </ul>
   </section>
 
-    <section id="preparacao">
-    <h2>✍🏻 Preparação de Texto</h2>
-    <blockquote>“Lapidar sem apagar. Aparar sem tirar a textura.”</blockquote>
-    <p>Minha abordagem é técnica e sensível: cada obra exige um tipo de atenção, e a meta é sempre preservar a voz do autor enquanto aprimoro fluidez, ritmo e clareza.</p>
-    <p><strong>Editoras atendidas:</strong> HarperCollins Brasil | Antofágica | Rocco | Objetiva | Record | Sextante | Galera Record</p>
-    <h3>Obras preparadas</h3>
-    <ul>
-      <li>Enterrem Nossos Ossos à Meia-Noite — V. E. Schwab (Galera Record)</li>
-      <li>Em Águas Sombrias — Paula Hawkins (Record)</li>
-      <li>Trilogia Tons de Magia — V. E. Schwab (Galera Record)</li>
-      <li>Frankenstein — Mary Shelley (Antofágica)</li>
-      <li>Menina Boa, Menina Má — Ali Land (Record)</li>
-      <li>Garotos de Lugar Nenhum — Elise McCredie (Rocco)</li>
-      <li>Série Outlander — Diana Gabaldon (Sextante)</li>
-      <li>Série As Irmãs Cynster — Stephanie Laurens (HarperCollins Brasil)</li>
-      <li>Coleção Senhores do Mundo Subterrâneo — Gena Showalter (HarperCollins Brasil)</li>
-    </ul>
+  <!-- Preparação de Texto -->
+  <section id="preparacao" class="fade-in">
+    <h2>Preparação de Texto</h2>
+    <blockquote>
+      "Lapidar sem apagar. Aparar sem tirar a textura."
+    </blockquote>
+    <p style="margin-top: 2rem; font-size: 1.1rem; line-height: 1.8;">
+      Minha abordagem é técnica e sensível: cada obra exige um tipo de atenção, e a meta é sempre preservar a voz do autor enquanto aprimoro fluidez, ritmo e clareza.
+    </p>
+
+    <h3>Editoras com que colaboro:</h3>
+    <div class="editoras">
+      <span class="editora-tag">HarperCollins Brasil</span>
+      <span class="editora-tag">Antofágica</span>
+      <span class="editora-tag">Rocco</span>
+      <span class="editora-tag">Objetiva</span>
+      <span class="editora-tag">Record</span>
+      <span class="editora-tag">Sextante</span>
+      <span class="editora-tag">Galera Record</span>
+    </div>
+
+    <h3>Algumas obras preparadas</h3>
+    <div class="book-gallery">
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="EnterremOssosàMeia-noite.jpg" alt="Enterrem Nossos Ossos à Meia-Noite">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Enterrem Nossos Ossos à Meia-Noite</div>
+          <div class="book-author">V. E. Schwab</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="ÁguasSombrias.jpeg" alt="Em Águas Sombrias">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Em Águas Sombrias</div>
+          <div class="book-author">Paula Hawkins</div>
+        </div>
+      </div>
+      
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="Frankenstein.jpg" alt="Frankenstein">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Frankenstein</div>
+          <div class="book-author">Mary Shelley</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="MeninaBoaMeninaMá.jpeg" alt="Menina Boa, Menina Má">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Menina Boa, Menina Má</div>
+          <div class="book-author">Ali Land</div>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="Outlander.png" alt="Série Outlander">
+          <div class="book-overlay"></div>
+        </div>
+        <div class="book-info">
+          <div class="book-title">Série Outlander</div>
+          <div class="book-author">Diana Gabaldon</div>
+        </div>
+      </div>
+     
+  <!-- Contato -->
+  <section id="contato" class="fade-in">
+    <h2>Contato</h2>
+    <p style="margin-top: 2rem; font-size: 1.2rem; line-height: 1.8;">
+      Vamos conversar sobre palavras?
+    </p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span>✉️</span>
+        <div>
+          <strong>E-mail:</strong> <a href="mailto:flaviapaesbarreto@gmail.com">flaviapaesbarreto@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span>🔗</span>
+        <div>
+          <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/flaviadelavor/" target="_blank">www.linkedin.com/in/flaviadelavor</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="contato">
-    <h2>📬 Contato</h2>
-    <p>Vamos conversar sobre palavras?</p>
-    <ul>
-      <li>✉️ <strong>E-mail:</strong> <a href="mailto:flaviapaesbarreto@gmail.com">flaviapaesbarreto@gmail.com</a></li>
-      <li>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/flaviadelavor/" target="_blank">www.linkedin.com/in/flaviadelavor</a></li>
-    </ul>
-  </section>
-
+  <!-- Footer -->
   <footer>
     <p>© 2025 Flavia de Lavor — Tradução Literária e Preparação de Texto</p>
   </footer>
+
+  <script>
+    // Navegação sticky
+    let lastScroll = 0;
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        navbar.classList.add('visible');
+      } else {
+        navbar.classList.remove('visible');
+      }
+      
+      lastScroll = currentScroll;
+    });
+
+    // Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Animação de fade-in ao scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(element => {
+      observer.observe(element);
+    });
+  </script>
 </body>
 </html>
 
