@@ -55,7 +55,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 10[...]')  ;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 10[..."/>"></path></pattern></defs></svg>');
       opacity: 0.5;
     }
 
@@ -415,6 +415,30 @@
         padding: 0.4rem 1rem;
       }
     }
+
+    /* Seções em full-bleed (ocupam toda a largura) */
+    .full-bleed {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    /* Container interno para manter o conteúdo alinhado com as outras seções */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* Ajuste para o footer quando usar .container */
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
   </style>
 </head>
 <body>
@@ -448,10 +472,10 @@
       Meu trabalho é encontrar, no português, o ritmo certo de cada autor, o tom exato que faz uma história soar como se sempre tivesse pertencido a esta língua.
     </p>
     <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
-      Colaboro com editoras como <strong>Record</strong>, <strong>Morro Branco</strong>, <strong>Trama</strong>, <strong>Aleph</strong>, <strong>Globo Alt</strong> e <strong>Sextante</strong>, traduzindo obras de ficção que percorrem diferentes mundos e estilos.  
+      Colaboro com editoras como <strong>Record</strong>, <strong>Morro Branco</strong>, <strong>Trama</strong>, <strong>Aleph</strong>, <strong>Globo Alt</strong> e <strong>Sextante</strong>, tr[...]  
     </p>
     <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
-      Também atuo na preparação de texto e revisão, em parceria com casas como <strong>HarperCollins Brasil</strong>, <strong>Antofágica</strong>, <strong>Rocco</strong> e <strong>Objetiva</strong>.
+      Também atuo na preparação de texto e revisão, em parceria com casas como <strong>HarperCollins Brasil</strong>, <strong>Antofágica</strong>, <strong>Rocco</strong> e <strong>Objetiva</strong>, [...]
     </p>
     <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
       Acredito que traduzir — e editar — é um exercício de escuta. Cada texto tem uma respiração própria, e o meu papel é garantir que ela continue viva depois da travessia.
@@ -725,24 +749,27 @@
         </div>
       </div>
     </div> <!-- fecha .book-gallery -->
+  </section>
 
  <!-- Contato -->
-  <section id="contato" class="fade-in">
-    <h2>Contato</h2>
-    <p style="margin-top: 2rem; font-size: 1.2rem; line-height: 1.8;">
-      Vamos conversar sobre palavras?
-    </p>
-    <div class="contact-info">
-      <div class="contact-item">
-        <span>✉️</span>
-        <div>
-          <strong>E-mail:</strong> <a href="mailto:flaviapaesbarreto@gmail.com">flaviapaesbarreto@gmail.com</a>
+  <section id="contato" class="fade-in full-bleed">
+    <div class="container">
+      <h2>Contato</h2>
+      <p style="margin-top: 2rem; font-size: 1.2rem; line-height: 1.8;">
+        Vamos conversar sobre palavras?
+      </p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span>✉️</span>
+          <div>
+            <strong>E-mail:</strong> <a href="mailto:flaviapaesbarreto@gmail.com">flaviapaesbarreto@gmail.com</a>
+          </div>
         </div>
-      </div>
-      <div class="contact-item">
-        <span>🔗</span>
-        <div>
-          <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/flaviadelavor/" target="_blank">www.linkedin.com/in/flaviadelavor</a>
+        <div class="contact-item">
+          <span>🔗</span>
+          <div>
+            <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/flaviadelavor/" target="_blank">www.linkedin.com/in/flaviadelavor</a>
+          </div>
         </div>
       </div>
     </div>
@@ -750,7 +777,9 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Flavia de Lavor — Tradução Literária e Preparação de Texto</p>
+    <div class="container">
+      <p>© 2025 Flavia de Lavor — Tradução Literária e Preparação de Texto</p>
+    </div>
   </footer>
 
   <script>
