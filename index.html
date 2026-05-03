@@ -10,13 +10,13 @@
   
   <style>
     :root {
-      --cor-primaria: #f5f5f5;
-      --cor-secundaria: #e0e0e0;
+      --cor-primaria: #1a1a1a;
+      --cor-secundaria: #2d2d2d;
       --cor-destaque: #d4af37;
-      --cor-texto: #e0e0e0;
-      --cor-texto-claro: #b0b0b0;
-      --cor-fundo: #1a1a1a;
-      --cor-fundo-alt: #242424;
+      --cor-texto: #333333;
+      --cor-texto-claro: #666666;
+      --cor-fundo: #ffffff;
+      --cor-fundo-alt: #f8f8f8;
       --transicao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -40,7 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, var(--cor-fundo) 0%, var(--cor-fundo-alt) 100%);
+      background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
       color: white;
       text-align: center;
       padding: 2rem;
@@ -55,7 +55,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="[...[...]
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="[...]"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
       opacity: 0.5;
     }
 
@@ -93,7 +93,7 @@
       display: inline-block;
       padding: 1rem 2.5rem;
       background: var(--cor-destaque);
-      color: var(--cor-fundo);
+      color: var(--cor-primaria);
       text-decoration: none;
       font-weight: 600;
       border-radius: 50px;
@@ -241,7 +241,7 @@
   object-fit: contain;
   display: block;
   transition: var(--transicao);
-  background: #333;
+  background: white;
 }
 
     .book-item:hover .book-cover img {
@@ -293,7 +293,7 @@
 
     .styled-list li {
       padding: 0.8rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       transition: var(--transicao);
     }
 
@@ -314,7 +314,7 @@
     .editora-tag {
       padding: 0.5rem 1.2rem;
       background: var(--cor-fundo-alt);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 25px;
       font-size: 0.9rem;
       font-weight: 500;
@@ -323,7 +323,7 @@
 
     .editora-tag:hover {
       background: var(--cor-destaque);
-      color: var(--cor-fundo);
+      color: white;
       border-color: var(--cor-destaque);
       transform: translateY(-2px);
     }
@@ -358,7 +358,7 @@
 
     /* Footer */
     footer {
-      background: var(--cor-fundo);
+      background: var(--cor-primaria);
       color: white;
       text-align: center;
       padding: 2rem;
@@ -474,10 +474,10 @@
       Meu trabalho é encontrar, no português, o ritmo certo de cada autor, o tom exato que faz uma história soar como se sempre tivesse pertencido a esta língua.
     </p>
     <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
-      Colaboro com editoras como <strong>Record</strong>, <strong>Morro Branco</strong>, <strong>Trama</strong>, <strong>Aleph</strong>, <strong>Globo Alt</strong> e <strong>Sextante</strong>, traduzindo narrativas de autores consagrados e emergentes.
+      Colaboro com editoras como <strong>Record</strong>, <strong>Morro Branco</strong>, <strong>Trama</strong>, <strong>Aleph</strong>, <strong>Globo Alt</strong> e <strong>Sextante</strong>, traduzindo obras de ficção que percorrem diferentes mundos e estilos. 
     </p>
     <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
-      Também atuo na preparação de texto e revisão, em parceria com casas como <strong>HarperCollins Brasil</strong>, <strong>Antofágica</strong>, <strong>Rocco</strong> e <strong>Radha Brasil</strong>.
+      Também atuo na preparação de texto e revisão, em parceria com casas como <strong>HarperCollins Brasil</strong>, <strong>Antofágica</strong>, <strong>Rocco</strong> e <strong>Radha Brasil</strong>, acompanhando o original desde os primeiros ajustes até o formato final. 
     </p>
     <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
       Acredito que traduzir — e editar — é um exercício de escuta. Cada texto tem uma respiração própria, e o meu papel é garantir que ela continue viva depois da travessia.
