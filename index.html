@@ -10,14 +10,30 @@
   
   <style>
     :root {
-      --cor-primaria: #f6f6f6;
-      --cor-secundaria: #bbb9a2;
+      --cor-primaria: #1a1a1a;
+      --cor-secundaria: #2d2d2d;
       --cor-destaque: #d4af37;
-      --cor-texto: #f6f6f6;
-      --cor-texto-claro: #e8e8e8;
-      --cor-fundo: #181818;
-      --cor-fundo-alt: #232323;
+      --cor-texto: #333333;
+      --cor-texto-claro: #666666;
+      --cor-fundo: #ffffff;
+      --cor-fundo-alt: #f8f8f8;
       --transicao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cor-primaria: #f6f6f6;
+        --cor-secundaria: #bbb9a2;
+        --cor-destaque: #d4af37;
+        --cor-texto: #f6f6f6;
+        --cor-texto-claro: #e8e8e8;
+        --cor-fundo: #181818;
+        --cor-fundo-alt: #232323;
+      }
+      body, section, .full-bleed, .container {
+        background: var(--cor-fundo) !important;
+        color: var(--cor-texto) !important;
+      }
     }
 
     * {
